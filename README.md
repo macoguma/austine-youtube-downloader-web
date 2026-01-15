@@ -1,28 +1,21 @@
-# austine-youtube-downloader-web
 <div align="center">
 
   <h1>🎥 Austine YouTube Downloader Web</h1>
   
   <p>
-    <strong>Fast • Clean • No Ads • Works on Phone & PC</strong><br>
-    Simple web app to get direct download links for YouTube videos and audio
+    <strong>Fast • Clean • No Ads • Mobile Friendly</strong><br>
+    Simple web application to get direct download links for YouTube videos and audio
   </p>
 
   <p>
-    <a href="https://yourusername.github.io/your-repo-name/">
-      <img src="https://img.shields.io/badge/Live%20Demo-Click%20Here-red?style=for-the-badge&logo=youtube&logoColor=white" alt="Live Demo">
+    <a href="https://macoguma.github.io/austine-youtube-downloader-web/">
+      <img src="https://img.shields.io/badge/Live%20Demo-Open%20Now-red?style=for-the-badge&logo=youtube&logoColor=white" alt="Live Demo">
     </a>
     &nbsp;&nbsp;
     <img src="https://img.shields.io/badge/Technology-HTML%20%7C%20CSS%20%7C%20JavaScript-blue?style=for-the-badge" alt="Tech Stack">
+    &nbsp;&nbsp;
+    <img src="https://img.shields.io/badge/Hosted-GitHub%20Pages-181717?style=for-the-badge&logo=github" alt="GitHub Pages">
   </p>
-
-  <br>
-
-  ![Demo Screenshot](https://via.placeholder.com/800x450/111/eee?text=Beautiful+Dark+Mode+Downloader+Preview)
-  <!-- 
-    Replace the line above with a real screenshot later!
-    How to add: Upload screenshot.png to repo → right-click raw link → copy → paste here
-  -->
 
 </div>
 
@@ -30,59 +23,55 @@
 
 ## ✨ Features
 
-- Modern dark theme with smooth animations
-- Responsive design (perfect for mobile & desktop)
-- Instant format detection (video + audio options)
-- One-click direct downloads
-- No registration • No ads • No popups
-- Press **Enter** to search
-- Real-time loading spinner
+- Modern dark theme with smooth hover effects & animations  
+- Fully responsive – perfect for phones and desktops  
+- Instant format detection (different video qualities + audio)  
+- Direct download links (no redirects or ads)  
+- Real-time loading animation  
+- Press **Enter** to start  
+- Clean error handling with friendly messages  
 
-## 🚀 Live Demo
+## 🚀 Try it now
 
-https://yourusername.github.io/your-repo-name/
+→ https://macoguma.github.io/austine-youtube-downloader-web/
 
-(Replace `yourusername` and `your-repo-name` with your actual GitHub info)
+Just paste any public YouTube link and click **Get Download Links**
 
-## ⚠️ Important Legal Disclaimer
+## ⚠️ Important Legal Notice
 
-This tool is provided **for educational and personal use only**.
+This tool is provided **strictly for educational and personal use only**.
 
-Downloading copyrighted content without permission may violate:
-- YouTube's Terms of Service
-- Copyright laws in your country
+Downloading copyrighted content without permission may violate:  
+- YouTube's Terms of Service  
+- Copyright laws in your country  
 
-Use responsibly and only for content you have the right to download.
+Use responsibly and only for content you have rights to download.
 
-## 🛠️ How It Works
+## 🛠️ Technical Details
 
-This is a **pure static website** (HTML + CSS + JS) hosted on GitHub Pages.
-
-It uses a public third-party API that wraps yt-dlp to fetch video formats.
+- Pure static website (HTML + CSS + Vanilla JavaScript)  
+- Hosted on **GitHub Pages** (zero server cost)  
+- Uses public third-party yt-dlp wrapper API  
+- No backend • No database • No tracking  
 
 **Note:** Public APIs can sometimes become slow or unavailable.  
-If that happens → the app shows a friendly error message.
+If downloads stop working, the page will show a clear error message.
 
-## 📱 Mobile Friendly
+## 📱 Mobile Experience
 
-Tested and looks great on phones!  
-Just open the link in Chrome/Safari → paste URL → download.
+Designed and tested to work smoothly on Android/iOS phones.  
+Open in Chrome, paste link → download directly to your device.
 
-## 🤝 Want to Contribute?
+## 🤝 Contributing
 
-Feel free to:
-- Report issues
-- Suggest better public APIs
-- Add light mode toggle
-- Improve design / animations
-
-Pull requests are welcome!
+Found a better public API? Want light mode? Improved design?  
+Feel free to open an issue or submit a pull request!
 
 ## 📄 License
 
 MIT License  
-Feel free to use, modify, and share (but please keep the disclaimer)
+You are free to use, modify and share (please keep the legal disclaimer)
 
 ---
 
-Made with ❤️ by Austine • Mombasa, Kenya • 2026
+Made with ❤️ by **Austine** • Nairobi, Kenya • 2026
