@@ -3,11 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Austine YouTube Downloader • Fast & Clean</title>
-  <meta name="description" content="Download YouTube videos and audio in high quality - free, no ads, works on mobile"/>
-  
-  <!-- Favicon (optional - add your own later) -->
-  <link rel="icon" href="https://img.icons8.com/fluency/48/000000/youtube-play.png">
+  <title>Austine YouTube Downloader • Auto Download</title>
   
   <style>
     :root {
@@ -18,16 +14,13 @@
       --accent-hover: #cc0000;
       --gray: #888;
       --border: #333;
+      --success: #4caf50;
     }
     
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin:0; padding:0; box-sizing:border-box; }
     
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      font-family: system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
@@ -35,60 +28,49 @@
       flex-direction: column;
       align-items: center;
       padding: 2rem 1rem;
-      line-height: 1.5;
     }
     
-    .container {
-      width: 100%;
-      max-width: 600px;
-    }
+    .container { width: 100%; max-width: 620px; }
     
-    header {
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
+    header { text-align: center; margin-bottom: 2.5rem; }
     
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 800;
       background: linear-gradient(90deg, #ff0000, #ff4d4d);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 0.5rem;
     }
     
-    .subtitle {
-      color: var(--gray);
-      font-size: 1.1rem;
-    }
+    .subtitle { color: var(--gray); font-size: 1.15rem; margin-top: 0.4rem; }
     
     .input-group {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
     }
     
     input[type="text"] {
-      padding: 1rem 1.2rem;
-      font-size: 1.1rem;
+      padding: 1.1rem 1.3rem;
+      font-size: 1.15rem;
       border: 2px solid var(--border);
       border-radius: 12px;
       background: var(--card);
       color: var(--text);
       outline: none;
-      transition: border-color 0.3s;
+      transition: border 0.3s;
     }
     
-    input[type="text"]:focus {
+    input:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(255,0,0,0.15);
+      box-shadow: 0 0 0 4px rgba(255,0,0,0.12);
     }
     
     button {
-      padding: 1.1rem;
-      font-size: 1.2rem;
-      font-weight: 600;
+      padding: 1.25rem;
+      font-size: 1.3rem;
+      font-weight: bold;
       background: var(--accent);
       color: white;
       border: none;
@@ -97,107 +79,44 @@
       transition: all 0.3s ease;
     }
     
-    button:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-    }
+    button:hover { background: var(--accent-hover); transform: translateY(-2px); }
     
-    button:active {
-      transform: translateY(0);
-    }
-    
-    #result {
-      margin-top: 2rem;
-      padding: 1.5rem;
+    #status {
+      margin-top: 1.5rem;
+      padding: 1.2rem;
+      border-radius: 12px;
       background: var(--card);
-      border-radius: 16px;
       border: 1px solid var(--border);
-      min-height: 150px;
-      display: none;
-    }
-    
-    #result.show {
-      display: block;
-      animation: fadeIn 0.5s ease;
-    }
-    
-    .loading {
+      min-height: 120px;
       text-align: center;
-      padding: 2rem;
-      color: var(--gray);
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
     
-    .spinner {
-      width: 40px;
-      height: 40px;
-      border: 4px solid #333;
+    .loading::before {
+      content: "";
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 4px solid #444;
       border-top: 4px solid var(--accent);
       border-radius: 50%;
       animation: spin 1s linear infinite;
-      margin: 0 auto 1rem;
+      margin-right: 12px;
+      vertical-align: middle;
     }
     
-    ul {
-      list-style: none;
-      display: grid;
-      gap: 1rem;
-    }
+    .success { color: var(--success); font-weight: bold; }
     
-    li {
-      padding: 1rem;
-      background: rgba(255,255,255,0.05);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      transition: all 0.3s;
-    }
+    .error { color: #ff6b6b; }
     
-    li:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-    }
-    
-    a.download-btn {
-      display: inline-block;
-      padding: 0.7rem 1.2rem;
-      margin-top: 0.8rem;
-      background: var(--accent);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      transition: background 0.3s;
-    }
-    
-    a.download-btn:hover {
-      background: var(--accent-hover);
-    }
-    
-    .error {
-      color: #ff6b6b;
-      text-align: center;
-      padding: 1.5rem;
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
     
     .disclaimer {
       margin-top: 3rem;
       text-align: center;
       font-size: 0.9rem;
       color: var(--gray);
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    
-    @media (max-width: 500px) {
-      h1 { font-size: 2rem; }
-      button { font-size: 1.1rem; }
     }
   </style>
 </head>
@@ -206,95 +125,82 @@
   <div class="container">
     <header>
       <h1>YouTube Downloader</h1>
-      <p class="subtitle">Fast • Clean • No Ads • High Quality</p>
+      <div class="subtitle">Paste link → Tap Download → Auto saves to your device</div>
     </header>
 
     <div class="input-group">
-      <input type="text" id="url" placeholder="Paste YouTube link here..." autofocus />
-      <button onclick="getDownloadLinks()">Get Download Links</button>
+      <input type="text" id="url" placeholder="https://www.youtube.com/watch?v=..." autofocus />
+      <button onclick="startDownload()">Download Video</button>
     </div>
 
-    <div id="result">
-      <div class="loading" id="loading" style="display:none;">
-        <div class="spinner"></div>
-        <p>Fetching formats... Please wait</p>
-      </div>
-      
-      <div id="content"></div>
-    </div>
-
-    <div class="disclaimer">
-      ⚠️ For personal/educational use only • Respect copyright laws • 
-      Public API may change • Enjoy responsibly!
-    </div>
+    <div id="status">Ready... Paste link and tap Download</div>
   </div>
 
+  <div class="disclaimer">
+    ⚠️ Personal/educational use only • Respect copyright • 
+    Public API (cobalt.tools) – may not work for every video in 2026
+  </div>
+
+  <!-- Hidden link for auto-download -->
+  <a id="autoDownloadLink" style="display:none;" download></a>
+
   <script>
-    async function getDownloadLinks() {
-      const urlInput = document.getElementById('url');
-      const url = urlInput.value.trim();
-      if (!url) {
-        alert("Please paste a valid YouTube URL!");
+    const status = document.getElementById('status');
+    const autoLink = document.getElementById('autoDownloadLink');
+
+    async function startDownload() {
+      const urlInput = document.getElementById('url').value.trim();
+      if (!urlInput || !urlInput.includes('youtube.com') && !urlInput.includes('youtu.be')) {
+        status.innerHTML = '<span class="error">Please paste a valid YouTube link!</span>';
         return;
       }
 
-      const result = document.getElementById('result');
-      const loading = document.getElementById('loading');
-      const content = document.getElementById('content');
-
-      result.classList.add('show');
-      loading.style.display = 'block';
-      content.innerHTML = '';
+      status.innerHTML = '<span class="loading">Fetching video... Please wait (5–15 sec)</span>';
 
       try {
-        // Public API - may need replacement if it stops working
-        // Alternatives: https://cobalt.tools/api/json (if active), or search for "yt-dlp public api 2026"
-        const apiUrl = `https://api.ymcdn.org/yt-dlp?url=${encodeURIComponent(url)}`;
+        // Cobalt public API endpoint – returns JSON with direct urls
+        const apiUrl = `https://cobalt.tools/api/json`;
         
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error(`API error: ${response.status}`);
-        
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            url: urlInput,
+            vCodec: 'h264',       // best compatibility
+            vQuality: 'max',      // highest available
+            aFormat: 'mp3',       // fallback if video fails
+            isAudioOnly: false
+          })
+        });
+
+        if (!response.ok) throw new Error(`API responded with ${response.status}`);
+
         const data = await response.json();
 
-        if (data.error) throw new Error(data.error);
+        if (data.status !== 'stream' && data.status !== 'success') {
+          throw new Error(data.text || 'No download link available');
+        }
 
-        let html = '<h3 style="margin-bottom:1rem;">Available Formats:</h3><ul>';
-        
-        // Assuming common response format - adjust if your API is different
-        (data.formats || []).forEach(fmt => {
-          const quality = fmt.quality || fmt.format_note || 'Unknown';
-          const type = fmt.ext || 'video';
-          const size = fmt.filesize ? `~${(fmt.filesize/1024/1024).toFixed(1)} MB` : '';
-          
-          html += `
-            <li>
-              <strong>${quality} • ${type.toUpperCase()}</strong>
-              <span style="color:#aaa; font-size:0.9rem;">${size}</span>
-              <br>
-              <a href="${fmt.url}" target="_blank" class="download-btn" download>
-                Download ${type.toUpperCase()}
-              </a>
-            </li>`;
-        });
-        
-        html += '</ul>';
-        content.innerHTML = html;
+        // Cobalt usually returns direct url in .url field for stream/success
+        const downloadUrl = data.url;
+        if (!downloadUrl) throw new Error('No direct download link found');
+
+        // Auto-trigger download
+        autoLink.href = downloadUrl;
+        autoLink.download = data.filename || `video_\( {Date.now()}. \){data.extension || 'mp4'}`;
+        autoLink.click();
+
+        status.innerHTML = `<span class="success">Download started automatically! 🎉<br>Check your downloads folder.</span>`;
+
       } catch (err) {
-        content.innerHTML = `
-          <p class="error">
-            Oops! Something went wrong<br>
-            <small>${err.message}</small><br><br>
-            Try again or check if the API is still working.
-          </p>`;
-      } finally {
-        loading.style.display = 'none';
+        status.innerHTML = `<span class="error">Sorry, failed to get link...<br>${err.message}<br><br>Try again or use another video (some are blocked in 2026)</span>`;
       }
     }
 
-    // Bonus: Press Enter to search
-    document.getElementById('url').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') getDownloadLinks();
+    // Bonus: Press Enter = Download
+    document.getElementById('url').addEventListener('keypress', e => {
+      if (e.key === 'Enter') startDownload();
     });
   </script>
 </body>
-  </html>
+</html>
